@@ -1,9 +1,10 @@
 jQuery Scroll Background Swap
 -----------------------------
 
-Swap out the background image of an element as you scroll down. See example index.html
+Swap out the background image of an element as you scroll down. [See example here (scroll down the page)](https://jrue.github.io/jquery-scroll-swap/example/)
 
-The file is in the js folder.
+Download the js file here:
+[https://github.com/jrue/jquery-scroll-swap/blob/main/example/js/jquery-scroll-swap.js](https://github.com/jrue/jquery-scroll-swap/blob/main/example/js/jquery-scroll-swap.js)
 
 When the piece of text comes into view (default 75% from top of viewport) it will swap the background image with the data-image attribute image.
 
