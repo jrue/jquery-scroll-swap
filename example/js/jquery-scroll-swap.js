@@ -26,7 +26,13 @@ https://creativecommons.org/licenses/by-nc-sa/4.0/
       //merge options passed in during instantiation with our defaults
       base.options = $.extend({},$.scrollSwap.defaultOptions, options);
       base.data = [];
-      base.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry/.test(navigator.userAgent);
+      base.isMobile = /Android|webOS|iPhone|iPod|BlackBerry/.test(navigator.userAgent);
+
+      //if mobile, let text boxes take up most of the width
+      if(base.isMobile && base.options.noCSS === false){
+        base.options.width = '90%';
+      }
+
     };
 
      
@@ -47,7 +53,7 @@ https://creativecommons.org/licenses/by-nc-sa/4.0/
     base.addPlaceHolder = function(){
 
       //unless they want to do their own CSS stuff, we need the container position relative.
-      if(base.options.noCSS == false){
+      if(base.options.noCSS === false){
         base.$el.css({
           position:'relative',
           zIndex:1,
