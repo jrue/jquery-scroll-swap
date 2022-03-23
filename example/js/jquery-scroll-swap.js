@@ -70,14 +70,14 @@ https://creativecommons.org/licenses/by-nc-sa/4.0/
         if(typeof image !== 'undefined'){
 
           placeHolder = $("<div />").css({
-            position: "absolute",
-            height: "100%",
-            width: "100%",
+            position: "fixed",
+            pointerEvents: "none",
+            height: "100vh",
+            width: "100vw",
             top: 0,
             left: 0,
             zIndex: 999 - Number(i),
             backgroundImage: "url(" + image + ")",
-            backgroundAttachment: "fixed",
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
             backgroundPosition: "center",
@@ -180,17 +180,27 @@ https://creativecommons.org/licenses/by-nc-sa/4.0/
         scroll.data.forEach(function(d, i){
 
           //if it's after the last one
+          if(scrollTop > scroll.data[scroll.data.length - 1].offset + ($(window).height() * scroll.options.triggerFromTop)){
+            $(".scrollBackgroundHolder").last().css({"opacity":0});
+          } else
+
+          //if it's ON the last text box
           if(scrollTop > scroll.data[scroll.data.length - 1].offset){
             $(".scrollBackgroundHolder").not(":nth-child(" + (scroll.data.length - 1) + ")").css("opacity", 0);
             $(".scrollBackgroundHolder").last().css({"opacity":1});
           } else
+
+          //if it's before the first text box
           if(scrollTop < scroll.data[0].offset){
             $(".scrollBackgroundHolder").css("opacity", 0);
           } else
+
+          //if it's between text boxes
           if(scrollTop > scroll.data[i].offset && scrollTop < scroll.data[i+1].offset){
             $(".scrollBackgroundHolder").not(":nth-child(" + i + ")").css("opacity", 0);
             $(".scrollBackgroundHolder").eq(i).css({"opacity":1});
-          }
+          } 
+
           
 
         });
