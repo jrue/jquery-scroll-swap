@@ -185,6 +185,17 @@ https://creativecommons.org/licenses/by-nc-sa/4.0/
 
         scroll.data.forEach(function(d, i){
 
+          //if it's before the first text box
+          if(scrollTop - scroll.trueHeight + $(window).height() < scroll.data[0].offset){
+            $(".scrollBackgroundHolder").css({"opacity":0});
+          } else
+
+          //if it's ON the first box
+          if(scrollTop - scroll.trueHeight + $(window).height() > scroll.data[0].offset && scrollTop < scroll.data[1].offset){
+            $(".scrollBackgroundHolder").not(":nth-child(0)").css("opacity", 0);
+            $(".scrollBackgroundHolder").first().css({"opacity":1});
+          } else
+
           //if it's after the last one
           if(scrollTop > scroll.data[scroll.data.length - 1].offset + ($(window).height() * scroll.options.triggerFromTop)){
             $(".scrollBackgroundHolder").last().css({"opacity":0});
@@ -194,11 +205,6 @@ https://creativecommons.org/licenses/by-nc-sa/4.0/
           if(scrollTop > scroll.data[scroll.data.length - 1].offset){
             $(".scrollBackgroundHolder").not(":nth-child(" + (scroll.data.length - 1) + ")").css("opacity", 0);
             $(".scrollBackgroundHolder").last().css({"opacity":1});
-          } else
-
-          //if it's before the first text box
-          if(scrollTop < scroll.data[0].offset){
-            $(".scrollBackgroundHolder").css("opacity", 0);
           } else
 
           //if it's between text boxes
