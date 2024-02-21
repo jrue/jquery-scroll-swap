@@ -181,7 +181,7 @@ https://creativecommons.org/licenses/by-nc-sa/4.0/
 
       $(window).on('scroll', function(){
         
-        let scrollTop = $(window).scrollTop() + scroll.trueHeight;
+        let scrollTop = $(window).scrollTop() ;
 
         scroll.data.forEach(function(d, i){
 
@@ -197,12 +197,12 @@ https://creativecommons.org/licenses/by-nc-sa/4.0/
           } else
 
           //if it's after the last one
-          if(scrollTop > scroll.data[scroll.data.length - 1].offset + ($(window).height() * scroll.options.triggerFromTop)){
+          if(scrollTop + scroll.trueHeight > scroll.data[scroll.data.length - 1].offset + ($(window).height() * scroll.options.triggerFromTop)){
             $(".scrollBackgroundHolder").last().css({"opacity":0});
           } else
 
           //if it's ON the last text box
-          if(scrollTop > scroll.data[scroll.data.length - 1].offset){
+          if(scrollTop + scroll.trueHeight > scroll.data[scroll.data.length - 1].offset){
             $(".scrollBackgroundHolder").not(":nth-child(" + (scroll.data.length - 1) + ")").css("opacity", 0);
             $(".scrollBackgroundHolder").last().css({"opacity":1});
           } else
